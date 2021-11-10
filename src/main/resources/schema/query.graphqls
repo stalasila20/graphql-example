@@ -1,0 +1,37 @@
+input SampleRequest {
+	firstName: String!,
+	lastName: String,
+	id: Long
+}
+
+type StudentResponse {
+	id: Long,
+	firstName: String,
+	lastName: String,
+	email: String,
+	street: String,
+	city: String,
+	fullName: String
+	learningSubjects(subjectNameFilter: SubjectNameFilter): [SubjectResponse]
+}
+
+enum SubjectNameFilter {
+All,
+	Java, 
+	SQL, 
+	MongoDB
+}
+
+type SubjectResponse {
+	id: Long,
+	subjectName: String,
+	marksObtained: Float
+}
+
+type Query {
+	firstQuery : String
+	secondQuery: String
+	getFullName(firstName: String, lastName: String) : String
+	getDetailsFromRequest(sampleRequest: SampleRequest) : String
+	students(id: Long) : StudentResponse 
+}
